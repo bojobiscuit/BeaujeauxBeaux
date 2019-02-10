@@ -1,0 +1,79 @@
+@model Website.Models.CareerStatsModel
+
+
+@if (Model.AlertMessage != null)
+{
+    <div class="alert alert-warning" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Uh Oh!</strong> @Model.AlertMessage
+    </div>
+}
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-secondary ">
+
+    <ul class="navbar-nav mr-auto">
+
+        <!-- Leagues -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="download">@Model.SelectedLeague.Acronym <span class="caret"></span></a>
+            <div class="dropdown-menu" aria-labelledby="Leagues">
+                @foreach (var league in Model.LeagueOptions)
+                {
+                    <a href="@(Model.GetLeagueLink(league.Id))" class="dropdown-item">@league.Name</a>
+                }
+            </div>
+        </li>
+
+        <!-- Player Type -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="download">@((Model is Website.Models.SkaterCareerStatsModel) ? "Skaters" : "Goalies") <span class="caret"></span></a>
+            <div class="dropdown-menu" aria-labelledby="Teams">
+                <a href="@(Model.GetSkaterLink())" class="dropdown-item">Skaters</a>
+                <a href="@(Model.GetGoalieLink())" class="dropdown-item">Goalies</a>
+            </div>
+        </li>
+
+        <!-- Season Types -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="download">@(Model.SelectedSeasonType.Name) <span class="caret"></span></a>
+            <div class="dropdown-menu" aria-labelledby="Season Types">
+                @foreach (var seasonType in Model.SeasonTypeOptions)
+                {
+                    <a href="@(Model.GetSeasonTypeLink(seasonType.Id))" class="dropdown-item">@seasonType.Name</a>
+                }
+            </div>
+        </li>
+
+        <!-- Teams -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="download">@(Model.SelectedTeam != null ? Model.SelectedTeam.Acronym : "All Teams ")  <span class="caret"></span></a>
+            <div class="dropdown-menu dropdown-height" aria-labelledby="Teams">
+                <a href="@(Model.GetAllTeamLink())" class="dropdown-item">All Teams</a>
+                <div class="dropdown-divider"></div>
+                @foreach (var team in Model.TeamOptions)
+                {
+                    <a href="@(Model.GetTeamLink(team.Id))" class="dropdown-item">@team.Name</a>
+                }
+            </div>
+        </li>
+
+    </ul>
+    <ul class="navbar-nav">
+
+        <!-- Page Number -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="download">Page @(Model.PageNumber)  <span class="caret"></span></a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-height" aria-labelledby="Teams">
+                @for (int pageNumber = 1; pageNumber <= Model.TotalPages; pageNumber++)
+                {
+                    <a href="@(Model.GetPageLink(pageNumber))" class="dropdown-item text-right">@(pageNumber)</a>
+                }
+            </div>
+        </li>
+
+    </ul>
+</nav>
+
+<br />

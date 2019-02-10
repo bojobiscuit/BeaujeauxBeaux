@@ -1,0 +1,21 @@
+@model Website.Models.PlayerStatsModel
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-secondary ">
+
+    <ul class="navbar-nav mr-auto">
+
+        <!-- Leagues -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="download">@Model.SelectedLeague.Acronym <span class="caret"></span></a>
+            <div class="dropdown-menu" aria-labelledby="Leagues">
+                @foreach (var league in Model.LeagueOptions)
+                {
+                    <a href="@(Model.GetLeagueLink(league.Id))" class="dropdown-item">@league.Name</a>
+                }
+            </div>
+        </li>
+
+    </ul>
+</nav>
+
+<br />

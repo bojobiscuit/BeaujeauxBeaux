@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d7bbbfd2749f472195f1411ab8ad80f5" Name="Diagram1" ZoomLevel="100">
+        <EntityTypeShape EntityType="BeaujeauxDBModel.C__RefactorLog" Width="1.5" PointX="2.75" PointY="0.5" />
+        <EntityTypeShape EntityType="BeaujeauxDBModel.Goalie" Width="1.5" PointX="0.5" PointY="7.125" />
+        <EntityTypeShape EntityType="BeaujeauxDBModel.GoalieSeasonStat" Width="1.5" PointX="0.875" PointY="9.75" />
+        <EntityTypeShape EntityType="BeaujeauxDBModel.League" Width="1.5" PointX="6.375" PointY="12.125" />
+        <EntityTypeShape EntityType="BeaujeauxDBModel.Season" Width="1.5" PointX="4" PointY="14" />
+        <EntityTypeShape EntityType="BeaujeauxDBModel.SeasonType" Width="1.5" PointX="3.875" PointY="17.875" />
+        <EntityTypeShape EntityType="BeaujeauxDBModel.Skater" Width="1.5" PointX="11.875" PointY="6.625" />
+        <EntityTypeShape EntityType="BeaujeauxDBModel.Team" Width="1.5" PointX="3.875" PointY="8" />
+        <AssociationConnector Association="BeaujeauxDBModel.FK_GoalieSeasonStats_ToGoalie" />
+        <AssociationConnector Association="BeaujeauxDBModel.FK_GoalieSeasonStats_ToSeason" />
+        <AssociationConnector Association="BeaujeauxDBModel.FK_GoalieSeasonStats_ToTeam" />
+        <AssociationConnector Association="BeaujeauxDBModel.FK_Season_ToLeague" />
+        <AssociationConnector Association="BeaujeauxDBModel.FK_Season_ToSeasonType" />
+        <AssociationConnector Association="BeaujeauxDBModel.Seasons_Teams" />
+        <EntityTypeShape EntityType="BeaujeauxDBModel.Franchise" Width="1.5" PointX="9.125" PointY="10.5" />
+        <AssociationConnector Association="BeaujeauxDBModel.FK_Franchise_ToLeague" />
+        <AssociationConnector Association="BeaujeauxDBModel.FK_Franchise_ToTeam" />
+        <AssociationConnector Association="BeaujeauxDBModel.FK_Team_ToFranchise" />
+        <EntityTypeShape EntityType="BeaujeauxDBModel.RequestSubmission" Width="1.5" PointX="3" PointY="3" />
+        <EntityTypeShape EntityType="BeaujeauxDBModel.RequestType" Width="1.5" PointX="0.75" PointY="3.125" />
+        <AssociationConnector Association="BeaujeauxDBModel.FK_RequestSubmission_ToRequestType" />
+        <EntityTypeShape EntityType="BeaujeauxDBModel.SkaterSeasonStat" Width="1.5" PointX="14.125" PointY="6.125" />
+        <AssociationConnector Association="BeaujeauxDBModel.FK_SkaterSeasonStats_ToSeason" />
+        <AssociationConnector Association="BeaujeauxDBModel.FK_SkaterSeasonStats_ToSkater" />
+        <AssociationConnector Association="BeaujeauxDBModel.FK_SkaterSeasonStats_ToTeam" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

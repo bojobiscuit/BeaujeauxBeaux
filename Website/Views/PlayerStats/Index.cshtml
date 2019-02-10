@@ -1,0 +1,55 @@
+@model Website.Models.PlayerSearchModel
+
+<div class="container">
+
+    <div class="col-md-12 pageHeaderSection">
+        <h2>Player Search</h2>
+    </div>
+
+    <br />
+
+    @if (Model != null && Model.AlertMessage != null)
+    {
+        <div class="alert alert-warning" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>Uh Oh!</strong> @Model.AlertMessage
+        </div>
+        <br />
+    }
+
+    @using (Html.BeginForm("Index", "PlayerStats", FormMethod.Get))
+    {
+        <div class="form-group">
+            <label for="exampleInputEmail1">Player Name</label>
+            <div class="input-group">
+                <input type="text" class="form-control" name="searchTerm" placeholder="Enter part of the name">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </span>
+            </div>
+            <small id="emailHelp" class="form-text text-muted">Warning: Some players have dumb friggin accents</small>
+        </div>
+    }
+
+    @if (Model != null)
+    {
+        if (Model.SearchResults.Any())
+        {
+            <div>
+                <ul>
+                    @foreach (var player in Model.SearchResults)
+                    {
+                        <li><a href="@Url.Action((player.IsGoalie) ? "Goalie" : "Skater", "PlayerStats", new { pi = player.PlayerId })">@player.PlayerName</a></li>
+                    }
+                </ul>
+            </div>
+        }
+        else
+        {
+            <div>Uh... no results, broski. I know typing is hard, but try again.</div>
+        }
+    }
+
+</div>

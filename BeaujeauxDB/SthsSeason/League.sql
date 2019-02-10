@@ -1,0 +1,6 @@
+CREATE TABLE [dbo].[League]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Name] NVARCHAR(50) NOT NULL, 
+    [Acronym] NVARCHAR(10) NOT NULL
+)

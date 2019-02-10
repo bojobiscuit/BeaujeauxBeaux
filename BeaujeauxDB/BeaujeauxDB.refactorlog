@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="1c4bc196-4ec7-47ed-b86a-2f8fdca733b3" ChangeDateTime="02/21/2018 23:25:52">
+    <Property Name="ElementName" Value="[dbo].[Skater].[PlayerId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Skater]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Name" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="835f8c81-5684-428a-a034-d30f9f73678a" ChangeDateTime="02/21/2018 23:48:13">
+    <Property Name="ElementName" Value="[dbo].[SkaterXSeason].[SkaterId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SkaterXSeason]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="GoalieId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="122ebeaa-19a5-4c4a-b44e-c13b42ff3ed9" ChangeDateTime="02/21/2018 23:48:20">
+    <Property Name="ElementName" Value="[dbo].[SkaterXSeason].[SkaterSeasonStatsId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SkaterXSeason]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="GoalieSeasonStatsId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c8a66091-6294-4be6-b8b0-b3e5a8b7c121" ChangeDateTime="02/26/2018 21:05:48">
+    <Property Name="ElementName" Value="[dbo].[Season].[TypeId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Season]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SeasonTypeId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f9e36ad6-663b-476a-97d5-d6135ec92145" ChangeDateTime="02/26/2018 22:25:50">
+    <Property Name="ElementName" Value="[dbo].[Seasons_Teams].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Seasons_Teams]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SeasonId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="96a9a7f4-1b87-47c2-a395-825c0dc553ac" ChangeDateTime="03/05/2018 00:33:40">
+    <Property Name="ElementName" Value="[dbo].[RequestSubmission].[RequestType]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[RequestSubmission]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RequestTypeId" />
+  </Operation>
+</Operations>

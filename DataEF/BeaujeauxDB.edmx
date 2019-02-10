@@ -1,0 +1,1043 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BeaujeauxDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Franchise">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LatestTeamId" Type="int" Nullable="false" />
+          <Property Name="LeagueId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Goalie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GoalieSeasonStats">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GoalieId" Type="int" Nullable="false" />
+          <Property Name="TeamId" Type="int" Nullable="false" />
+          <Property Name="SeasonId" Type="int" Nullable="false" />
+          <Property Name="IsSubtotal" Type="bit" Nullable="false" />
+          <Property Name="GP" Type="int" Nullable="false" />
+          <Property Name="W" Type="int" Nullable="false" />
+          <Property Name="L" Type="int" Nullable="false" />
+          <Property Name="OTL" Type="int" Nullable="false" />
+          <Property Name="MP" Type="int" Nullable="false" />
+          <Property Name="PIM" Type="int" Nullable="false" />
+          <Property Name="SO" Type="int" Nullable="false" />
+          <Property Name="GA" Type="int" Nullable="false" />
+          <Property Name="SA" Type="int" Nullable="false" />
+          <Property Name="SAR" Type="int" Nullable="false" />
+          <Property Name="A" Type="int" Nullable="false" />
+          <Property Name="EG" Type="int" Nullable="false" />
+          <Property Name="PSS" Type="int" Nullable="false" />
+          <Property Name="PSA" Type="int" Nullable="false" />
+          <Property Name="ST" Type="int" Nullable="false" />
+          <Property Name="BG" Type="int" Nullable="false" />
+          <Property Name="S1" Type="int" Nullable="false" />
+          <Property Name="S2" Type="int" Nullable="false" />
+          <Property Name="S3" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="League">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Acronym" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RequestSubmission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestTypeId" Type="int" Nullable="false" />
+          <Property Name="DateSubmitted" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateComplete" Type="datetime" />
+          <Property Name="CompleteComment" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="RequestType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Display" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Rank" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Season">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="SeasonTypeId" Type="int" Nullable="false" />
+          <Property Name="LeagueId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Seasons_Teams">
+          <Key>
+            <PropertyRef Name="SeasonId" />
+            <PropertyRef Name="TeamId" />
+          </Key>
+          <Property Name="SeasonId" Type="int" Nullable="false" />
+          <Property Name="TeamId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SeasonType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Skater">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SkaterSeasonStats">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SkaterId" Type="int" Nullable="false" />
+          <Property Name="TeamId" Type="int" />
+          <Property Name="SeasonId" Type="int" Nullable="false" />
+          <Property Name="IsSubtotal" Type="bit" Nullable="false" />
+          <Property Name="GP" Type="int" Nullable="false" />
+          <Property Name="G" Type="int" Nullable="false" />
+          <Property Name="A" Type="int" Nullable="false" />
+          <Property Name="P" Type="int" Nullable="false" />
+          <Property Name="PLMI" Type="int" Nullable="false" />
+          <Property Name="PIM" Type="int" Nullable="false" />
+          <Property Name="PM5" Type="int" Nullable="false" />
+          <Property Name="HIT" Type="int" Nullable="false" />
+          <Property Name="HTT" Type="int" Nullable="false" />
+          <Property Name="SHT" Type="int" Nullable="false" />
+          <Property Name="OSB" Type="int" Nullable="false" />
+          <Property Name="OSM" Type="int" Nullable="false" />
+          <Property Name="SB" Type="int" Nullable="false" />
+          <Property Name="MP" Type="int" Nullable="false" />
+          <Property Name="PPG" Type="int" Nullable="false" />
+          <Property Name="PPA" Type="int" Nullable="false" />
+          <Property Name="PPP" Type="int" Nullable="false" />
+          <Property Name="PPS" Type="int" Nullable="false" />
+          <Property Name="PPM" Type="int" Nullable="false" />
+          <Property Name="PKG" Type="int" Nullable="false" />
+          <Property Name="PKA" Type="int" Nullable="false" />
+          <Property Name="PKP" Type="int" Nullable="false" />
+          <Property Name="PKS" Type="int" Nullable="false" />
+          <Property Name="PKM" Type="int" Nullable="false" />
+          <Property Name="GW" Type="int" Nullable="false" />
+          <Property Name="GT" Type="int" Nullable="false" />
+          <Property Name="FOW" Type="int" Nullable="false" />
+          <Property Name="FOT" Type="int" Nullable="false" />
+          <Property Name="GA" Type="int" Nullable="false" />
+          <Property Name="TA" Type="int" Nullable="false" />
+          <Property Name="EG" Type="int" Nullable="false" />
+          <Property Name="HT" Type="int" Nullable="false" />
+          <Property Name="PSG" Type="int" Nullable="false" />
+          <Property Name="PSS" Type="int" Nullable="false" />
+          <Property Name="FW" Type="int" Nullable="false" />
+          <Property Name="FL" Type="int" Nullable="false" />
+          <Property Name="FT" Type="int" Nullable="false" />
+          <Property Name="GS" Type="int" Nullable="false" />
+          <Property Name="PS" Type="int" Nullable="false" />
+          <Property Name="WG" Type="int" Nullable="false" />
+          <Property Name="WP" Type="int" Nullable="false" />
+          <Property Name="S1" Type="int" Nullable="false" />
+          <Property Name="S2" Type="int" Nullable="false" />
+          <Property Name="S3" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FranchiseId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Acronym" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IconName" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_Franchise_ToLeague">
+          <End Role="League" Type="Self.League" Multiplicity="1" />
+          <End Role="Franchise" Type="Self.Franchise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="League">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Franchise">
+              <PropertyRef Name="LeagueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Franchise_ToTeam">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="Franchise" Type="Self.Franchise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Franchise">
+              <PropertyRef Name="LatestTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoalieSeasonStats_ToGoalie">
+          <End Role="Goalie" Type="Self.Goalie" Multiplicity="1" />
+          <End Role="GoalieSeasonStats" Type="Self.GoalieSeasonStats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goalie">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GoalieSeasonStats">
+              <PropertyRef Name="GoalieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoalieSeasonStats_ToSeason">
+          <End Role="Season" Type="Self.Season" Multiplicity="1" />
+          <End Role="GoalieSeasonStats" Type="Self.GoalieSeasonStats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Season">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GoalieSeasonStats">
+              <PropertyRef Name="SeasonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoalieSeasonStats_ToTeam">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="GoalieSeasonStats" Type="Self.GoalieSeasonStats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GoalieSeasonStats">
+              <PropertyRef Name="TeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestSubmission_ToRequestType">
+          <End Role="RequestType" Type="Self.RequestType" Multiplicity="1" />
+          <End Role="RequestSubmission" Type="Self.RequestSubmission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RequestType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RequestSubmission">
+              <PropertyRef Name="RequestTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Season_ToLeague">
+          <End Role="League" Type="Self.League" Multiplicity="1" />
+          <End Role="Season" Type="Self.Season" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="League">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Season">
+              <PropertyRef Name="LeagueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Season_ToSeasonType">
+          <End Role="SeasonType" Type="Self.SeasonType" Multiplicity="1" />
+          <End Role="Season" Type="Self.Season" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SeasonType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Season">
+              <PropertyRef Name="SeasonTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seasons_Teams_ToSeason">
+          <End Role="Season" Type="Self.Season" Multiplicity="1" />
+          <End Role="Seasons_Teams" Type="Self.Seasons_Teams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Season">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Seasons_Teams">
+              <PropertyRef Name="SeasonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seasons_Teams_ToTeam">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="Seasons_Teams" Type="Self.Seasons_Teams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Seasons_Teams">
+              <PropertyRef Name="TeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SkaterSeasonStats_ToSeason">
+          <End Role="Season" Type="Self.Season" Multiplicity="1" />
+          <End Role="SkaterSeasonStats" Type="Self.SkaterSeasonStats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Season">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SkaterSeasonStats">
+              <PropertyRef Name="SeasonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SkaterSeasonStats_ToSkater">
+          <End Role="Skater" Type="Self.Skater" Multiplicity="1" />
+          <End Role="SkaterSeasonStats" Type="Self.SkaterSeasonStats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skater">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SkaterSeasonStats">
+              <PropertyRef Name="SkaterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SkaterSeasonStats_ToTeam">
+          <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
+          <End Role="SkaterSeasonStats" Type="Self.SkaterSeasonStats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SkaterSeasonStats">
+              <PropertyRef Name="TeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Team_ToFranchise">
+          <End Role="Franchise" Type="Self.Franchise" Multiplicity="0..1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Franchise">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="FranchiseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BeaujeauxDBModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Franchise" EntityType="Self.Franchise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Goalie" EntityType="Self.Goalie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GoalieSeasonStats" EntityType="Self.GoalieSeasonStats" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="League" EntityType="Self.League" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestSubmission" EntityType="Self.RequestSubmission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestType" EntityType="Self.RequestType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Season" EntityType="Self.Season" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Seasons_Teams" EntityType="Self.Seasons_Teams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SeasonType" EntityType="Self.SeasonType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Skater" EntityType="Self.Skater" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SkaterSeasonStats" EntityType="Self.SkaterSeasonStats" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Franchise_ToLeague" Association="Self.FK_Franchise_ToLeague">
+            <End Role="League" EntitySet="League" />
+            <End Role="Franchise" EntitySet="Franchise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Franchise_ToTeam" Association="Self.FK_Franchise_ToTeam">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="Franchise" EntitySet="Franchise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoalieSeasonStats_ToGoalie" Association="Self.FK_GoalieSeasonStats_ToGoalie">
+            <End Role="Goalie" EntitySet="Goalie" />
+            <End Role="GoalieSeasonStats" EntitySet="GoalieSeasonStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoalieSeasonStats_ToSeason" Association="Self.FK_GoalieSeasonStats_ToSeason">
+            <End Role="Season" EntitySet="Season" />
+            <End Role="GoalieSeasonStats" EntitySet="GoalieSeasonStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoalieSeasonStats_ToTeam" Association="Self.FK_GoalieSeasonStats_ToTeam">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="GoalieSeasonStats" EntitySet="GoalieSeasonStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestSubmission_ToRequestType" Association="Self.FK_RequestSubmission_ToRequestType">
+            <End Role="RequestType" EntitySet="RequestType" />
+            <End Role="RequestSubmission" EntitySet="RequestSubmission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Season_ToLeague" Association="Self.FK_Season_ToLeague">
+            <End Role="League" EntitySet="League" />
+            <End Role="Season" EntitySet="Season" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Season_ToSeasonType" Association="Self.FK_Season_ToSeasonType">
+            <End Role="SeasonType" EntitySet="SeasonType" />
+            <End Role="Season" EntitySet="Season" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seasons_Teams_ToSeason" Association="Self.FK_Seasons_Teams_ToSeason">
+            <End Role="Season" EntitySet="Season" />
+            <End Role="Seasons_Teams" EntitySet="Seasons_Teams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seasons_Teams_ToTeam" Association="Self.FK_Seasons_Teams_ToTeam">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="Seasons_Teams" EntitySet="Seasons_Teams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SkaterSeasonStats_ToSeason" Association="Self.FK_SkaterSeasonStats_ToSeason">
+            <End Role="Season" EntitySet="Season" />
+            <End Role="SkaterSeasonStats" EntitySet="SkaterSeasonStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SkaterSeasonStats_ToSkater" Association="Self.FK_SkaterSeasonStats_ToSkater">
+            <End Role="Skater" EntitySet="Skater" />
+            <End Role="SkaterSeasonStats" EntitySet="SkaterSeasonStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SkaterSeasonStats_ToTeam" Association="Self.FK_SkaterSeasonStats_ToTeam">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="SkaterSeasonStats" EntitySet="SkaterSeasonStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Team_ToFranchise" Association="Self.FK_Team_ToFranchise">
+            <End Role="Franchise" EntitySet="Franchise" />
+            <End Role="Team" EntitySet="Team" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BeaujeauxDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BeaujeauxEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__RefactorLog" EntityType="BeaujeauxDBModel.C__RefactorLog" />
+          <EntitySet Name="Goalies" EntityType="BeaujeauxDBModel.Goalie" />
+          <EntitySet Name="GoalieSeasonStats" EntityType="BeaujeauxDBModel.GoalieSeasonStat" />
+          <EntitySet Name="Leagues" EntityType="BeaujeauxDBModel.League" />
+          <EntitySet Name="Seasons" EntityType="BeaujeauxDBModel.Season" />
+          <EntitySet Name="SeasonTypes" EntityType="BeaujeauxDBModel.SeasonType" />
+          <EntitySet Name="Skaters" EntityType="BeaujeauxDBModel.Skater" />
+          <EntitySet Name="Teams" EntityType="BeaujeauxDBModel.Team" />
+          <AssociationSet Name="FK_GoalieSeasonStats_ToGoalie" Association="BeaujeauxDBModel.FK_GoalieSeasonStats_ToGoalie">
+            <End Role="Goalie" EntitySet="Goalies" />
+            <End Role="GoalieSeasonStat" EntitySet="GoalieSeasonStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoalieSeasonStats_ToSeason" Association="BeaujeauxDBModel.FK_GoalieSeasonStats_ToSeason">
+            <End Role="Season" EntitySet="Seasons" />
+            <End Role="GoalieSeasonStat" EntitySet="GoalieSeasonStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoalieSeasonStats_ToTeam" Association="BeaujeauxDBModel.FK_GoalieSeasonStats_ToTeam">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="GoalieSeasonStat" EntitySet="GoalieSeasonStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Season_ToLeague" Association="BeaujeauxDBModel.FK_Season_ToLeague">
+            <End Role="League" EntitySet="Leagues" />
+            <End Role="Season" EntitySet="Seasons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Season_ToSeasonType" Association="BeaujeauxDBModel.FK_Season_ToSeasonType">
+            <End Role="SeasonType" EntitySet="SeasonTypes" />
+            <End Role="Season" EntitySet="Seasons" />
+          </AssociationSet>
+          <AssociationSet Name="Seasons_Teams" Association="BeaujeauxDBModel.Seasons_Teams">
+            <End Role="Season" EntitySet="Seasons" />
+            <End Role="Team" EntitySet="Teams" />
+          </AssociationSet>
+          <EntitySet Name="Franchises" EntityType="BeaujeauxDBModel.Franchise" />
+          <AssociationSet Name="FK_Franchise_ToLeague" Association="BeaujeauxDBModel.FK_Franchise_ToLeague">
+            <End Role="League" EntitySet="Leagues" />
+            <End Role="Franchise" EntitySet="Franchises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Franchise_ToTeam" Association="BeaujeauxDBModel.FK_Franchise_ToTeam">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="Franchise" EntitySet="Franchises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Team_ToFranchise" Association="BeaujeauxDBModel.FK_Team_ToFranchise">
+            <End Role="Franchise" EntitySet="Franchises" />
+            <End Role="Team" EntitySet="Teams" />
+          </AssociationSet>
+          <EntitySet Name="RequestSubmissions" EntityType="BeaujeauxDBModel.RequestSubmission" />
+          <EntitySet Name="RequestTypes" EntityType="BeaujeauxDBModel.RequestType" />
+          <AssociationSet Name="FK_RequestSubmission_ToRequestType" Association="BeaujeauxDBModel.FK_RequestSubmission_ToRequestType">
+            <End Role="RequestType" EntitySet="RequestTypes" />
+            <End Role="RequestSubmission" EntitySet="RequestSubmissions" />
+          </AssociationSet>
+          <EntitySet Name="SkaterSeasonStats" EntityType="BeaujeauxDBModel.SkaterSeasonStat" />
+          <AssociationSet Name="FK_SkaterSeasonStats_ToSeason" Association="BeaujeauxDBModel.FK_SkaterSeasonStats_ToSeason">
+            <End Role="Season" EntitySet="Seasons" />
+            <End Role="SkaterSeasonStat" EntitySet="SkaterSeasonStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SkaterSeasonStats_ToSkater" Association="BeaujeauxDBModel.FK_SkaterSeasonStats_ToSkater">
+            <End Role="Skater" EntitySet="Skaters" />
+            <End Role="SkaterSeasonStat" EntitySet="SkaterSeasonStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SkaterSeasonStats_ToTeam" Association="BeaujeauxDBModel.FK_SkaterSeasonStats_ToTeam">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="SkaterSeasonStat" EntitySet="SkaterSeasonStats" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Goalie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GoalieSeasonStats" Relationship="BeaujeauxDBModel.FK_GoalieSeasonStats_ToGoalie" FromRole="Goalie" ToRole="GoalieSeasonStat" />
+        </EntityType>
+        <EntityType Name="GoalieSeasonStat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GoalieId" Type="Int32" Nullable="false" />
+          <Property Name="TeamId" Type="Int32" Nullable="false" />
+          <Property Name="SeasonId" Type="Int32" Nullable="false" />
+          <Property Name="IsSubtotal" Type="Boolean" Nullable="false" />
+          <Property Name="GP" Type="Int32" Nullable="false" />
+          <Property Name="W" Type="Int32" Nullable="false" />
+          <Property Name="L" Type="Int32" Nullable="false" />
+          <Property Name="OTL" Type="Int32" Nullable="false" />
+          <Property Name="MP" Type="Int32" Nullable="false" />
+          <Property Name="PIM" Type="Int32" Nullable="false" />
+          <Property Name="SO" Type="Int32" Nullable="false" />
+          <Property Name="GA" Type="Int32" Nullable="false" />
+          <Property Name="SA" Type="Int32" Nullable="false" />
+          <Property Name="SAR" Type="Int32" Nullable="false" />
+          <Property Name="A" Type="Int32" Nullable="false" />
+          <Property Name="EG" Type="Int32" Nullable="false" />
+          <Property Name="PSS" Type="Int32" Nullable="false" />
+          <Property Name="PSA" Type="Int32" Nullable="false" />
+          <Property Name="ST" Type="Int32" Nullable="false" />
+          <Property Name="BG" Type="Int32" Nullable="false" />
+          <Property Name="S1" Type="Int32" Nullable="false" />
+          <Property Name="S2" Type="Int32" Nullable="false" />
+          <Property Name="S3" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Goalie" Relationship="BeaujeauxDBModel.FK_GoalieSeasonStats_ToGoalie" FromRole="GoalieSeasonStat" ToRole="Goalie" />
+          <NavigationProperty Name="Season" Relationship="BeaujeauxDBModel.FK_GoalieSeasonStats_ToSeason" FromRole="GoalieSeasonStat" ToRole="Season" />
+          <NavigationProperty Name="Team" Relationship="BeaujeauxDBModel.FK_GoalieSeasonStats_ToTeam" FromRole="GoalieSeasonStat" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="League">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Acronym" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Seasons" Relationship="BeaujeauxDBModel.FK_Season_ToLeague" FromRole="League" ToRole="Season" />
+          <NavigationProperty Name="Franchises" Relationship="BeaujeauxDBModel.FK_Franchise_ToLeague" FromRole="League" ToRole="Franchise" />
+        </EntityType>
+        <EntityType Name="Season">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="SeasonTypeId" Type="Int32" Nullable="false" />
+          <Property Name="LeagueId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GoalieSeasonStats" Relationship="BeaujeauxDBModel.FK_GoalieSeasonStats_ToSeason" FromRole="Season" ToRole="GoalieSeasonStat" />
+          <NavigationProperty Name="League" Relationship="BeaujeauxDBModel.FK_Season_ToLeague" FromRole="Season" ToRole="League" />
+          <NavigationProperty Name="SeasonType" Relationship="BeaujeauxDBModel.FK_Season_ToSeasonType" FromRole="Season" ToRole="SeasonType" />
+          <NavigationProperty Name="Teams" Relationship="BeaujeauxDBModel.Seasons_Teams" FromRole="Season" ToRole="Team" />
+          <NavigationProperty Name="SkaterSeasonStats" Relationship="BeaujeauxDBModel.FK_SkaterSeasonStats_ToSeason" FromRole="Season" ToRole="SkaterSeasonStat" />
+        </EntityType>
+        <EntityType Name="SeasonType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Seasons" Relationship="BeaujeauxDBModel.FK_Season_ToSeasonType" FromRole="SeasonType" ToRole="Season" />
+        </EntityType>
+        <EntityType Name="Skater">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SkaterSeasonStats" Relationship="BeaujeauxDBModel.FK_SkaterSeasonStats_ToSkater" FromRole="Skater" ToRole="SkaterSeasonStat" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FranchiseId" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Acronym" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IconName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GoalieSeasonStats" Relationship="BeaujeauxDBModel.FK_GoalieSeasonStats_ToTeam" FromRole="Team" ToRole="GoalieSeasonStat" />
+          <NavigationProperty Name="Seasons" Relationship="BeaujeauxDBModel.Seasons_Teams" FromRole="Team" ToRole="Season" />
+          <NavigationProperty Name="Franchises" Relationship="BeaujeauxDBModel.FK_Franchise_ToTeam" FromRole="Team" ToRole="Franchise" />
+          <NavigationProperty Name="Franchise" Relationship="BeaujeauxDBModel.FK_Team_ToFranchise" FromRole="Team" ToRole="Franchise" />
+          <NavigationProperty Name="SkaterSeasonStats" Relationship="BeaujeauxDBModel.FK_SkaterSeasonStats_ToTeam" FromRole="Team" ToRole="SkaterSeasonStat" />
+        </EntityType>
+        <Association Name="FK_GoalieSeasonStats_ToGoalie">
+          <End Type="BeaujeauxDBModel.Goalie" Role="Goalie" Multiplicity="1" />
+          <End Type="BeaujeauxDBModel.GoalieSeasonStat" Role="GoalieSeasonStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goalie">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GoalieSeasonStat">
+              <PropertyRef Name="GoalieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoalieSeasonStats_ToSeason">
+          <End Type="BeaujeauxDBModel.Season" Role="Season" Multiplicity="1" />
+          <End Type="BeaujeauxDBModel.GoalieSeasonStat" Role="GoalieSeasonStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Season">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GoalieSeasonStat">
+              <PropertyRef Name="SeasonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoalieSeasonStats_ToTeam">
+          <End Type="BeaujeauxDBModel.Team" Role="Team" Multiplicity="1" />
+          <End Type="BeaujeauxDBModel.GoalieSeasonStat" Role="GoalieSeasonStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GoalieSeasonStat">
+              <PropertyRef Name="TeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Season_ToLeague">
+          <End Type="BeaujeauxDBModel.League" Role="League" Multiplicity="1" />
+          <End Type="BeaujeauxDBModel.Season" Role="Season" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="League">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Season">
+              <PropertyRef Name="LeagueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Season_ToSeasonType">
+          <End Type="BeaujeauxDBModel.SeasonType" Role="SeasonType" Multiplicity="1" />
+          <End Type="BeaujeauxDBModel.Season" Role="Season" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SeasonType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Season">
+              <PropertyRef Name="SeasonTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Seasons_Teams">
+          <End Type="BeaujeauxDBModel.Season" Role="Season" Multiplicity="*" />
+          <End Type="BeaujeauxDBModel.Team" Role="Team" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Franchise">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LatestTeamId" Type="Int32" Nullable="false" />
+          <Property Name="LeagueId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="League" Relationship="BeaujeauxDBModel.FK_Franchise_ToLeague" FromRole="Franchise" ToRole="League" />
+          <NavigationProperty Name="LatestTeam" Relationship="BeaujeauxDBModel.FK_Franchise_ToTeam" FromRole="Franchise" ToRole="Team" />
+          <NavigationProperty Name="Teams" Relationship="BeaujeauxDBModel.FK_Team_ToFranchise" FromRole="Franchise" ToRole="Team" />
+        </EntityType>
+        <Association Name="FK_Franchise_ToLeague">
+          <End Type="BeaujeauxDBModel.League" Role="League" Multiplicity="1" />
+          <End Type="BeaujeauxDBModel.Franchise" Role="Franchise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="League">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Franchise">
+              <PropertyRef Name="LeagueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Franchise_ToTeam">
+          <End Type="BeaujeauxDBModel.Team" Role="Team" Multiplicity="1" />
+          <End Type="BeaujeauxDBModel.Franchise" Role="Franchise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Franchise">
+              <PropertyRef Name="LatestTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Team_ToFranchise">
+          <End Type="BeaujeauxDBModel.Franchise" Role="Franchise" Multiplicity="0..1" />
+          <End Type="BeaujeauxDBModel.Team" Role="Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Franchise">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="FranchiseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RequestSubmission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestTypeId" Type="Int32" Nullable="false" />
+          <Property Name="DateSubmitted" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateComplete" Type="DateTime" Precision="3" />
+          <Property Name="CompleteComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RequestType" Relationship="BeaujeauxDBModel.FK_RequestSubmission_ToRequestType" FromRole="RequestSubmission" ToRole="RequestType" />
+        </EntityType>
+        <EntityType Name="RequestType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Display" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Rank" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RequestSubmissions" Relationship="BeaujeauxDBModel.FK_RequestSubmission_ToRequestType" FromRole="RequestType" ToRole="RequestSubmission" />
+        </EntityType>
+        <Association Name="FK_RequestSubmission_ToRequestType">
+          <End Type="BeaujeauxDBModel.RequestType" Role="RequestType" Multiplicity="1" />
+          <End Type="BeaujeauxDBModel.RequestSubmission" Role="RequestSubmission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RequestType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RequestSubmission">
+              <PropertyRef Name="RequestTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SkaterSeasonStat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SkaterId" Type="Int32" Nullable="false" />
+          <Property Name="TeamId" Type="Int32" Nullable="true" />
+          <Property Name="SeasonId" Type="Int32" Nullable="false" />
+          <Property Name="IsSubtotal" Type="Boolean" Nullable="false" />
+          <Property Name="GP" Type="Int32" Nullable="false" />
+          <Property Name="G" Type="Int32" Nullable="false" />
+          <Property Name="A" Type="Int32" Nullable="false" />
+          <Property Name="P" Type="Int32" Nullable="false" />
+          <Property Name="PLMI" Type="Int32" Nullable="false" />
+          <Property Name="PIM" Type="Int32" Nullable="false" />
+          <Property Name="PM5" Type="Int32" Nullable="false" />
+          <Property Name="HIT" Type="Int32" Nullable="false" />
+          <Property Name="HTT" Type="Int32" Nullable="false" />
+          <Property Name="SHT" Type="Int32" Nullable="false" />
+          <Property Name="OSB" Type="Int32" Nullable="false" />
+          <Property Name="OSM" Type="Int32" Nullable="false" />
+          <Property Name="SB" Type="Int32" Nullable="false" />
+          <Property Name="MP" Type="Int32" Nullable="false" />
+          <Property Name="PPG" Type="Int32" Nullable="false" />
+          <Property Name="PPA" Type="Int32" Nullable="false" />
+          <Property Name="PPP" Type="Int32" Nullable="false" />
+          <Property Name="PPS" Type="Int32" Nullable="false" />
+          <Property Name="PPM" Type="Int32" Nullable="false" />
+          <Property Name="PKG" Type="Int32" Nullable="false" />
+          <Property Name="PKA" Type="Int32" Nullable="false" />
+          <Property Name="PKP" Type="Int32" Nullable="false" />
+          <Property Name="PKS" Type="Int32" Nullable="false" />
+          <Property Name="PKM" Type="Int32" Nullable="false" />
+          <Property Name="GW" Type="Int32" Nullable="false" />
+          <Property Name="GT" Type="Int32" Nullable="false" />
+          <Property Name="FOW" Type="Int32" Nullable="false" />
+          <Property Name="FOT" Type="Int32" Nullable="false" />
+          <Property Name="GA" Type="Int32" Nullable="false" />
+          <Property Name="TA" Type="Int32" Nullable="false" />
+          <Property Name="EG" Type="Int32" Nullable="false" />
+          <Property Name="HT" Type="Int32" Nullable="false" />
+          <Property Name="PSG" Type="Int32" Nullable="false" />
+          <Property Name="PSS" Type="Int32" Nullable="false" />
+          <Property Name="FW" Type="Int32" Nullable="false" />
+          <Property Name="FL" Type="Int32" Nullable="false" />
+          <Property Name="FT" Type="Int32" Nullable="false" />
+          <Property Name="GS" Type="Int32" Nullable="false" />
+          <Property Name="PS" Type="Int32" Nullable="false" />
+          <Property Name="WG" Type="Int32" Nullable="false" />
+          <Property Name="WP" Type="Int32" Nullable="false" />
+          <Property Name="S1" Type="Int32" Nullable="false" />
+          <Property Name="S2" Type="Int32" Nullable="false" />
+          <Property Name="S3" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Season" Relationship="BeaujeauxDBModel.FK_SkaterSeasonStats_ToSeason" FromRole="SkaterSeasonStat" ToRole="Season" />
+          <NavigationProperty Name="Skater" Relationship="BeaujeauxDBModel.FK_SkaterSeasonStats_ToSkater" FromRole="SkaterSeasonStat" ToRole="Skater" />
+          <NavigationProperty Name="Team" Relationship="BeaujeauxDBModel.FK_SkaterSeasonStats_ToTeam" FromRole="SkaterSeasonStat" ToRole="Team" />
+        </EntityType>
+        <Association Name="FK_SkaterSeasonStats_ToSeason">
+          <End Type="BeaujeauxDBModel.Season" Role="Season" Multiplicity="1" />
+          <End Type="BeaujeauxDBModel.SkaterSeasonStat" Role="SkaterSeasonStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Season">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SkaterSeasonStat">
+              <PropertyRef Name="SeasonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SkaterSeasonStats_ToSkater">
+          <End Type="BeaujeauxDBModel.Skater" Role="Skater" Multiplicity="1" />
+          <End Type="BeaujeauxDBModel.SkaterSeasonStat" Role="SkaterSeasonStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skater">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SkaterSeasonStat">
+              <PropertyRef Name="SkaterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SkaterSeasonStats_ToTeam">
+          <End Type="BeaujeauxDBModel.Team" Role="Team" Multiplicity="0..1" />
+          <End Type="BeaujeauxDBModel.SkaterSeasonStat" Role="SkaterSeasonStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SkaterSeasonStat">
+              <PropertyRef Name="TeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BeaujeauxDBModelStoreContainer" CdmEntityContainer="BeaujeauxEntities">
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="BeaujeauxDBModel.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Goalies">
+            <EntityTypeMapping TypeName="BeaujeauxDBModel.Goalie">
+              <MappingFragment StoreEntitySet="Goalie">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GoalieSeasonStats">
+            <EntityTypeMapping TypeName="BeaujeauxDBModel.GoalieSeasonStat">
+              <MappingFragment StoreEntitySet="GoalieSeasonStats">
+                <ScalarProperty Name="S3" ColumnName="S3" />
+                <ScalarProperty Name="S2" ColumnName="S2" />
+                <ScalarProperty Name="S1" ColumnName="S1" />
+                <ScalarProperty Name="BG" ColumnName="BG" />
+                <ScalarProperty Name="ST" ColumnName="ST" />
+                <ScalarProperty Name="PSA" ColumnName="PSA" />
+                <ScalarProperty Name="PSS" ColumnName="PSS" />
+                <ScalarProperty Name="EG" ColumnName="EG" />
+                <ScalarProperty Name="A" ColumnName="A" />
+                <ScalarProperty Name="SAR" ColumnName="SAR" />
+                <ScalarProperty Name="SA" ColumnName="SA" />
+                <ScalarProperty Name="GA" ColumnName="GA" />
+                <ScalarProperty Name="SO" ColumnName="SO" />
+                <ScalarProperty Name="PIM" ColumnName="PIM" />
+                <ScalarProperty Name="MP" ColumnName="MP" />
+                <ScalarProperty Name="OTL" ColumnName="OTL" />
+                <ScalarProperty Name="L" ColumnName="L" />
+                <ScalarProperty Name="W" ColumnName="W" />
+                <ScalarProperty Name="GP" ColumnName="GP" />
+                <ScalarProperty Name="IsSubtotal" ColumnName="IsSubtotal" />
+                <ScalarProperty Name="SeasonId" ColumnName="SeasonId" />
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+                <ScalarProperty Name="GoalieId" ColumnName="GoalieId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Leagues">
+            <EntityTypeMapping TypeName="BeaujeauxDBModel.League">
+              <MappingFragment StoreEntitySet="League">
+                <ScalarProperty Name="Acronym" ColumnName="Acronym" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seasons">
+            <EntityTypeMapping TypeName="BeaujeauxDBModel.Season">
+              <MappingFragment StoreEntitySet="Season">
+                <ScalarProperty Name="LeagueId" ColumnName="LeagueId" />
+                <ScalarProperty Name="SeasonTypeId" ColumnName="SeasonTypeId" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SeasonTypes">
+            <EntityTypeMapping TypeName="BeaujeauxDBModel.SeasonType">
+              <MappingFragment StoreEntitySet="SeasonType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Skaters">
+            <EntityTypeMapping TypeName="BeaujeauxDBModel.Skater">
+              <MappingFragment StoreEntitySet="Skater">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teams">
+            <EntityTypeMapping TypeName="BeaujeauxDBModel.Team">
+              <MappingFragment StoreEntitySet="Team">
+                <ScalarProperty Name="IconName" ColumnName="IconName" />
+                <ScalarProperty Name="Acronym" ColumnName="Acronym" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FranchiseId" ColumnName="FranchiseId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Seasons_Teams" TypeName="BeaujeauxDBModel.Seasons_Teams" StoreEntitySet="Seasons_Teams">
+            <EndProperty Name="Team">
+              <ScalarProperty Name="Id" ColumnName="TeamId" />
+            </EndProperty>
+            <EndProperty Name="Season">
+              <ScalarProperty Name="Id" ColumnName="SeasonId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Franchises">
+            <EntityTypeMapping TypeName="BeaujeauxDBModel.Franchise">
+              <MappingFragment StoreEntitySet="Franchise">
+                <ScalarProperty Name="LeagueId" ColumnName="LeagueId" />
+                <ScalarProperty Name="LatestTeamId" ColumnName="LatestTeamId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestSubmissions">
+            <EntityTypeMapping TypeName="BeaujeauxDBModel.RequestSubmission">
+              <MappingFragment StoreEntitySet="RequestSubmission">
+                <ScalarProperty Name="CompleteComment" ColumnName="CompleteComment" />
+                <ScalarProperty Name="DateComplete" ColumnName="DateComplete" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
+                <ScalarProperty Name="RequestTypeId" ColumnName="RequestTypeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestTypes">
+            <EntityTypeMapping TypeName="BeaujeauxDBModel.RequestType">
+              <MappingFragment StoreEntitySet="RequestType">
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="Display" ColumnName="Display" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SkaterSeasonStats">
+            <EntityTypeMapping TypeName="BeaujeauxDBModel.SkaterSeasonStat">
+              <MappingFragment StoreEntitySet="SkaterSeasonStats">
+                <ScalarProperty Name="S3" ColumnName="S3" />
+                <ScalarProperty Name="S2" ColumnName="S2" />
+                <ScalarProperty Name="S1" ColumnName="S1" />
+                <ScalarProperty Name="WP" ColumnName="WP" />
+                <ScalarProperty Name="WG" ColumnName="WG" />
+                <ScalarProperty Name="PS" ColumnName="PS" />
+                <ScalarProperty Name="GS" ColumnName="GS" />
+                <ScalarProperty Name="FT" ColumnName="FT" />
+                <ScalarProperty Name="FL" ColumnName="FL" />
+                <ScalarProperty Name="FW" ColumnName="FW" />
+                <ScalarProperty Name="PSS" ColumnName="PSS" />
+                <ScalarProperty Name="PSG" ColumnName="PSG" />
+                <ScalarProperty Name="HT" ColumnName="HT" />
+                <ScalarProperty Name="EG" ColumnName="EG" />
+                <ScalarProperty Name="TA" ColumnName="TA" />
+                <ScalarProperty Name="GA" ColumnName="GA" />
+                <ScalarProperty Name="FOT" ColumnName="FOT" />
+                <ScalarProperty Name="FOW" ColumnName="FOW" />
+                <ScalarProperty Name="GT" ColumnName="GT" />
+                <ScalarProperty Name="GW" ColumnName="GW" />
+                <ScalarProperty Name="PKM" ColumnName="PKM" />
+                <ScalarProperty Name="PKS" ColumnName="PKS" />
+                <ScalarProperty Name="PKP" ColumnName="PKP" />
+                <ScalarProperty Name="PKA" ColumnName="PKA" />
+                <ScalarProperty Name="PKG" ColumnName="PKG" />
+                <ScalarProperty Name="PPM" ColumnName="PPM" />
+                <ScalarProperty Name="PPS" ColumnName="PPS" />
+                <ScalarProperty Name="PPP" ColumnName="PPP" />
+                <ScalarProperty Name="PPA" ColumnName="PPA" />
+                <ScalarProperty Name="PPG" ColumnName="PPG" />
+                <ScalarProperty Name="MP" ColumnName="MP" />
+                <ScalarProperty Name="SB" ColumnName="SB" />
+                <ScalarProperty Name="OSM" ColumnName="OSM" />
+                <ScalarProperty Name="OSB" ColumnName="OSB" />
+                <ScalarProperty Name="SHT" ColumnName="SHT" />
+                <ScalarProperty Name="HTT" ColumnName="HTT" />
+                <ScalarProperty Name="HIT" ColumnName="HIT" />
+                <ScalarProperty Name="PM5" ColumnName="PM5" />
+                <ScalarProperty Name="PIM" ColumnName="PIM" />
+                <ScalarProperty Name="PLMI" ColumnName="PLMI" />
+                <ScalarProperty Name="P" ColumnName="P" />
+                <ScalarProperty Name="A" ColumnName="A" />
+                <ScalarProperty Name="G" ColumnName="G" />
+                <ScalarProperty Name="GP" ColumnName="GP" />
+                <ScalarProperty Name="IsSubtotal" ColumnName="IsSubtotal" />
+                <ScalarProperty Name="SeasonId" ColumnName="SeasonId" />
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+                <ScalarProperty Name="SkaterId" ColumnName="SkaterId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

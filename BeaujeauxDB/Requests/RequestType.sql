@@ -1,0 +1,7 @@
+CREATE TABLE [dbo].[RequestType]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Name] NVARCHAR(50) NOT NULL, 
+    [Display] NVARCHAR(50) NOT NULL, 
+    [Rank] INT NOT NULL
+)

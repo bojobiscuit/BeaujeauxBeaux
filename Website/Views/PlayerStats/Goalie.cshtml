@@ -1,0 +1,116 @@
+@model Website.Models.GoaliePlayerStatsModel
+
+<div class="container">
+
+    <div class="col-md-12 pageHeaderSection">
+        <h2>@(Model.Goalie.Name)</h2>
+        @Html.Partial("PlayerStatsHeader", Model)
+    </div>
+
+    @foreach (var seasonGroup in Model.GroupedStats)
+    {
+        <div class="col-md-12 removePadding">
+
+            <div class="playerHeader bg-secondary">
+                <span>@seasonGroup.SeasonType.Name</span>
+            </div>
+
+            <div class="outer">
+                <div class="innerNoCol">
+                    <table class="scrollableTableNoCol table-stats">
+                        <thead>
+                            <tr>
+                                <th class="space">Season</th>
+                                <th>Team</th>
+                                <th>GP</th>
+                                <th>W</th>
+                                <th>L</th>
+                                <th>OTL</th>
+                                <th>MP</th>
+                                <th>PIM</th>
+                                <th>SO</th>
+                                <th>A</th>
+                                <th>EG</th>
+                                <th>GA</th>
+                                <th>SA</th>
+                                <th>PSS</th>
+                                <th>PSA</th>
+                                <th>ST</th>
+                                <th>BG</th>
+                                <th>S1</th>
+                                <th>S2</th>
+                                <th>S3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var stats in seasonGroup.Stats)
+                            {
+                                <tr>
+                                    <th>@stats.Season.Number</th>
+                                    <th><img src="~/img/icons/@(Model.GetImagePath(stats.Season, stats.Team))" /></th>
+                                    <td>@stats.GP</td>
+                                    <td>@stats.W</td>
+                                    <td>@stats.L</td>
+                                    <td>@stats.OTL</td>
+                                    <td>@stats.MP</td>
+                                    <td>@stats.PIM</td>
+                                    <td>@stats.SO</td>
+                                    <td>@stats.A</td>
+                                    <td>@stats.EG</td>
+                                    <td>@stats.GA</td>
+                                    <td>@stats.SA</td>
+                                    <td>@stats.PSS</td>
+                                    <td>@stats.PSA</td>
+                                    <td>@stats.ST</td>
+                                    <td>@stats.BG</td>
+                                    <td>@stats.S1</td>
+                                    <td>@stats.S2</td>
+                                    <td>@stats.S3</td>
+                                </tr>
+                            }
+                            <tr>
+                                <th>@seasonGroup.Stats.Count()</th>
+                                <th>@seasonGroup.Stats.Select(a => a.Team).Distinct().Count()</th>
+                                <th>@seasonGroup.TotalStats.GP</th>
+                                <td>@seasonGroup.TotalStats.W</td>
+                                <td>@seasonGroup.TotalStats.L</td>
+                                <td>@seasonGroup.TotalStats.OTL</td>
+                                <td>@seasonGroup.TotalStats.MP</td>
+                                <td>@seasonGroup.TotalStats.PIM</td>
+                                <td>@seasonGroup.TotalStats.SO</td>
+                                <td>@seasonGroup.TotalStats.A</td>
+                                <td>@seasonGroup.TotalStats.EG</td>
+                                <td>@seasonGroup.TotalStats.GA</td>
+                                <td>@seasonGroup.TotalStats.SA</td>
+                                <td>@seasonGroup.TotalStats.PSS</td>
+                                <td>@seasonGroup.TotalStats.PSA</td>
+                                <td>@seasonGroup.TotalStats.ST</td>
+                                <td>@seasonGroup.TotalStats.BG</td>
+                                <td>@seasonGroup.TotalStats.S1</td>
+                                <td>@seasonGroup.TotalStats.S2</td>
+                                <td>@seasonGroup.TotalStats.S3</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+    }
+
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('tbody').scroll(function (e) {
+                $('thead').css("left", -$("tbody").scrollLeft());
+                $('thead th:nth-child(1)').css("left", $("tbody").scrollLeft() - 5);
+                $('tbody td:nth-child(1)').css("left", $("tbody").scrollLeft() - 5);
+            });
+        });
+    </script>
+}

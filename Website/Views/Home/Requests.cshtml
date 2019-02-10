@@ -1,0 +1,91 @@
+@model Website.Models.RequestSubmitModel
+
+@section styles {
+    <style>
+        .body-content {
+            padding: 20px;
+        }
+    </style>
+}
+
+<div class="container">
+    <div class="col-md-12">
+
+        @if (Model.Submitted)
+        {
+            <div class="alert alert-dismissible alert-success">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Submission Successful!</strong> Thanks for helping.
+            </div>
+        }
+        else if (Model.ErrorMessage != null)
+        {
+            <div class="alert alert-dismissible alert-error">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Submission Failed!</strong> @Model.ErrorMessage
+            </div>
+        }
+
+
+        @using (Html.BeginForm("Requests", "Home", FormMethod.Post))
+        {
+            <h2>Requests</h2>
+
+            <div class="form-group">
+                <label for="exampleSelect1">Type of Request</label>
+                @Html.DropDownListFor(m => m.SelectedRequestId, Model.RequestTypeOptions, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="exampleTextarea">Description</label>
+                @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "5" })
+                <small class="text-muted">Hey... You... Yeah, you. Don't be a dick, please. </small>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        }
+    </div>
+
+    <div class="col-md-12">
+
+        <br />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Complete</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var row in Model.Submissions)
+                {
+                    <tr>
+                        <td></td>
+                        <th scope="row">@row.RequestType.Name</th>
+                        <td>@row.Description</td>
+                        <td>@row.DateSubmitted</td>
+                    </tr>
+                }
+                @*<tr>
+                    <td></td>
+                    <th scope="row">Data</th>
+                    <td>Blah Blah Blah Blah. Blah Blah Blah Blah. Blah Blah Blah Blah. Blah Blah Blah Blah. Blah Blah Blah Blah. Blah Blah Blah Blah. Blah Blah Blah Blah. </td>
+                    <td>03/04/18</td>
+                </tr>
+                <tr>
+                    <td><span class="glyphicon glyphicon-chevron-down"></span></td>
+                    <th scope="row">Feature</th>
+                    <td>Blah Blah Blah Blah. Blah Blah Blah Blah. Blah Blah Blah Blah. Blah Blah Blah Blah. Blah Blah Blah Blah. Blah Blah Blah Blah. Blah Blah Blah Blah. Blah Blah Blah Blah. Blah Blah Blah Blah. </td>
+                    <td>03/04/18</td>
+                </tr>
+                <tr>
+                    <td><span class="glyphicon glyphicon-ok"></span></td>
+                    <th scope="row">General</th>
+                    <td>Blah Blah Blah Blah. Blah Blah Blah Blah. Blah Blah Blah Blah. </td>
+                    <td>03/04/18</td>
+                </tr>*@
+            </tbody>
+        </table>
+
+    </div>
+</div>

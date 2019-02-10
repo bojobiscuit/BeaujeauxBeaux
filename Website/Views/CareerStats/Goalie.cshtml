@@ -1,0 +1,108 @@
+@model Website.Models.GoalieCareerStatsModel
+
+@if (Model.SelectedColumnSort != null)
+{
+    var index = Model.SelectedColumnSortIndex + 5;
+    if (Model.SelectedTeam != null)
+    {
+        index--;
+    }
+
+    <style>
+    .table-stats td:nth-child(@(index)) {
+        background-color: #4E5D6C !important;
+    }
+    </style>
+}
+
+<div class="container">
+   
+    <div class="col-md-12 pageHeaderSection">
+        <h2>Career Stats</h2>
+        @Html.Partial("CareerStatsHeader", Model)
+    </div>
+
+    <div class="col-md-12 removePadding">
+        <div class="outer">
+            <div class="inner">
+                <table class="scrollableTable table-stats">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Rank</th>
+                            <th>Years</th>
+                            @if (Model.SelectedTeam == null)
+                            {
+                                <th>Teams</th>
+                            }
+                            @foreach (var col in Model.ColumnHeaders)
+                            {
+                                var useGlyph = "";
+                                if (Model.SelectedColumnSort == col.Name)
+                                {
+                                    useGlyph = "glyphicon glyphicon-chevron-down";
+                                }
+
+                                <th>
+                                    <a href="@(Model.SelectedColumnSort == col.Name ? Model.GetSortLinkSelected(col.Name) : Model.GetSortLink(col.Name))">
+                                        @if (useGlyph.Length > 1)
+                                        {
+                                            <span class="@useGlyph"> </span>
+                                        }
+                                        @col.Display
+                                    </a>
+                                </th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{int rank = ((Model.PageNumber - 1) * Model.PageSize) + 1; }
+                        @foreach (var stats in Model.GroupedStats)
+                        {
+                            <tr>
+                                <th><a href="@Url.Action("Goalie", "PlayerStats", new { pi = stats.GoalieId })"><span class="d-md-none">@Model.GetLastName(stats.GoalieName)</span><span class="d-none d-md-block">@stats.GoalieName</span></a></th>
+                                <td>@(rank++)</td>
+                                <td>@stats.SeasonCount</td>
+                                @if (Model.SelectedTeam == null)
+                                {
+                                    <td>@stats.TeamCount</td>
+                                }
+                                <td>@stats.GP</td>
+                                <td>@stats.W</td>
+                                <td>@stats.L</td>
+                                <td>@stats.OTL</td>
+                                <td>@stats.MP</td>
+                                <td>@stats.PIM</td>
+                                <td>@stats.SO</td>
+                                <td>@stats.A</td>
+                                <td>@stats.EG</td>
+                                <td>@stats.GA</td>
+                                <td>@stats.SA</td>
+                                <td>@stats.PSS</td>
+                                <td>@stats.PSA</td>
+                                <td>@stats.ST</td>
+                                <td>@stats.BG</td>
+                                <td>@stats.S1</td>
+                                <td>@stats.S2</td>
+                                <td>@stats.S3</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('tbody').scroll(function (e) {
+                $('thead').css("left", -$("tbody").scrollLeft());
+                $('thead th:nth-child(1)').css("left", $("tbody").scrollLeft() - 5);
+                $('tbody td:nth-child(1)').css("left", $("tbody").scrollLeft() - 5);
+            });
+        });
+    </script>
+}

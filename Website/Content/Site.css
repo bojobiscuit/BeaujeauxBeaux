@@ -1,0 +1,146 @@
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+.dropdown-height {
+    overflow-y: scroll !important;
+    max-height: 300px !important;
+}
+
+a {
+    color: #ffa94c;
+}
+
+
+.scrollableTable {
+    table-layout: fixed;
+    width: 100%;
+    *margin-left: -230px; /*ie7*/
+}
+
+    .scrollableTable th:first-child {
+        position: absolute;
+        *position: relative; /*ie7*/
+        left: 0;
+        width: 230px;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-align: left;
+        background-color: #4E5D6C !important;
+        /*background-color: #efefef;*/
+    }
+
+.outer {
+    position: relative
+}
+
+.inner {
+    overflow-x: scroll;
+    overflow-y: visible;
+    margin-left: 230px;
+}
+
+
+.scrollableTableNoCol {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.innerNoCol {
+    overflow-x: scroll;
+    overflow-y: visible;
+}
+
+
+.selectedColumn {
+    background-color: #8fc8ff
+}
+
+.table-stats {
+    line-height: 2;
+}
+
+    .table-stats td,
+    .table-stats th {
+        width: 50px;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+        .table-stats th.space {
+            width: 60px;
+        }
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
+.pageHeaderSection {
+    padding-top: 30px;
+}
+
+@media (max-width: 767px) {
+    .scrollableTable {
+        *margin-left: -130px; /*ie7*/
+    }
+
+        .scrollableTable th:first-child {
+            width: 130px;
+        }
+
+    .inner {
+        margin-left: 130px;
+    }
+
+    .container {
+        padding-right: 0;
+        padding-left: 0;
+        margin-right: auto;
+        margin-left: auto
+    }
+
+    .body-content {
+        padding: 0px;
+    }
+
+
+
+    .removePadding {
+        padding: 0px;
+    }
+}
+
+.scrollableTable th {
+    font-weight: normal;
+}
+
+.playerHeader {
+    padding: 5px 20px;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
